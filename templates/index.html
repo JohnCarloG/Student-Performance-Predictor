@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Predittore Performance Studente</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Predittore delle Performance degli Studenti 🎓</h1>
+        <form id="studentForm">
+            Età: <input type="number" id="Age" value="16"><br>
+            Genere:
+            <select id="Gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select><br>
+            Classe:
+            <select id="Grade_Level">
+                <option>9th</option>
+                <option>10th</option>
+                <option>11th</option>
+                <option>12th</option>
+            </select><br>
+            Strength Score: <input type="number" id="Strength_Score" value="50" step="any"><br>
+            Endurance Score: <input type="number" id="Endurance_Score" value="50" step="any"><br>
+            Flexibility Score: <input type="number" id="Flexibility_Score" value="50" step="any"><br>
+            Speed & Agility Score: <input type="number" id="Speed_Agility_Score" value="50" step="any"><br>
+            BMI: <input type="number" id="BMI" value="20" step="any"><br>
+            Health & Fitness Knowledge Score: <input type="number" id="Health_Fitness_Knowledge_Score" value="50"
+                step="any"><br>
+            Skills Score: <input type="number" id="Skills_Score" value="50" step="any"><br>
+            Class Participation Level:
+            <select id="Class_Participation_Level">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select><br>
+            Attendance Rate: <input type="number" id="Attendance_Rate" value="80" step="any"><br>
+            Motivation Level:
+            <select id="Motivation_Level">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select><br>
+            Overall PE Performance Score: <input type="number" id="Overall_PE_Performance_Score" value="50"
+                step="any"><br>
+            Improvement Rate: <input type="number" id="Improvement_Rate" value="3" step="any"><br>
+            Final Grade:
+            <select id="Final_Grade">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>F</option>
+            </select><br>
+            Previous Semester PE Grade:
+            <select id="Previous_Semester_PE_Grade">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>F</option>
+            </select><br>
+            Hours Physical Activity per Week: <input type="number" id="Hours_Physical_Activity_Per_Week" value="5"
+                step="any"><br>
+            <button type="submit">Predici Performance</button>
+        </form>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        const form = document.getElementById('studentForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {};
+            for (let el of form.elements) {
+                if (el.id) data[el.id] = el.value;
+            }
+            const res = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            document.getElementById('result').innerText = "Performance prevista: " + result.performance;
+        });
+    </script>
+</body>
+
+</html>
