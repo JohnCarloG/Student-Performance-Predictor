@@ -1,11 +1,9 @@
-# Student Performance Prediction Webapp
+# Student Performance Predictor
 
-Questa webapp permette di predire la performance di uno studente usando modelli di Machine Learning.
+Web app per prevedere le performance degli studenti usando Random Forest.
 
-## Setup
-
-1. Clonare il repository:
+## Installazione
 
 ```bash
-git clone https://github.com/tuo-username/student_prediction_webapp.git
-cd student_prediction_webapp
+pip install -r requirements.txt
+python app.py
