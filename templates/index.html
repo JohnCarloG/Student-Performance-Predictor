@@ -10,6 +10,8 @@
 <body>
     <div class="container">
         <h1>Predittore delle Performance degli Studenti 🎓</h1>
+        Riga CSV: <input type="text" id="csvInput" style="width:100%;" placeholder="Inserisci la riga CSV separata da virgole"><br>
+<button id="loadCSV">Carica CSV</button>
         <form id="studentForm">
             Età: <input type="number" id="Age" value="16"><br>
             Genere:
@@ -88,6 +90,39 @@
             const result = await res.json();
             document.getElementById('result').innerText = "Performance prevista: " + result.performance;
         });
+
+
+
+        const csvInput = document.getElementById("csvInput");
+    const loadBtn = document.getElementById("loadCSV");
+
+    loadBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const csv = csvInput.value.split(",");
+        if(csv.length !== 18){
+            alert("Numero di valori non corretto! Ci vogliono 18 valori.");
+            return;
+        }
+        // Mappa valori ai campi
+        document.getElementById("Age").value = csv[0];
+        document.getElementById("Gender").value = csv[1];
+        document.getElementById("Grade_Level").value = csv[2];
+        document.getElementById("Strength_Score").value = csv[3];
+        document.getElementById("Endurance_Score").value = csv[4];
+        document.getElementById("Flexibility_Score").value = csv[5];
+        document.getElementById("Speed_Agility_Score").value = csv[6];
+        document.getElementById("BMI").value = csv[7];
+        document.getElementById("Health_Fitness_Knowledge_Score").value = csv[8];
+        document.getElementById("Skills_Score").value = csv[9];
+        document.getElementById("Class_Participation_Level").value = csv[10];
+        document.getElementById("Attendance_Rate").value = csv[11];
+        document.getElementById("Motivation_Level").value = csv[12];
+        document.getElementById("Overall_PE_Performance_Score").value = csv[13];
+        document.getElementById("Improvement_Rate").value = csv[14];
+        document.getElementById("Final_Grade").value = csv[15];
+        document.getElementById("Previous_Semester_PE_Grade").value = csv[16];
+        document.getElementById("Hours_Physical_Activity_Per_Week").value = csv[17];
+    });
     </script>
 </body>
 
