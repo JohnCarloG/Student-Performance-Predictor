@@ -2,7 +2,8 @@ trigger:
 - main   # o il nome del tuo branch principale
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: Default
+
 
 steps:
 - task: UsePythonVersion@0
