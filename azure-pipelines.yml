@@ -1,0 +1,16 @@
+trigger:
+- main   # o il nome del tuo branch principale
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+  displayName: 'Set up Python'
+
+- script: |
+    pip install -r requirements.txt
+    python app.py
+  displayName: 'Run app.py'
